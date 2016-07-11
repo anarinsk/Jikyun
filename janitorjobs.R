@@ -23,4 +23,16 @@ long_sdf <- sdf %>% gather(year, new_entry, Y2008:Y1999)
 tdf <- long_sdf
 str(long_sdf)
 
-tdf %>% filter(new_entry>0) %>% group_by(year) %>% summarise(count = n())
+vdf <- tdf %>% filter(new_entry>0) %>% group_by(year, HS_type) %>% summarise(sum = sum(new_entry))
+vdf <- vdf %>% spread(year, sum)
+str(vdf)
+
+library(ggplot2)
+
+ggplot(vdf) + 
+  geom_bar(mapping = aes(x = HS_type))  
+
+diamonds
+
+ggplot(vdf) +
+  geom_bar(aes(x=year, y=sum, fill=HS_type), stat ="identity", position ="fill")
