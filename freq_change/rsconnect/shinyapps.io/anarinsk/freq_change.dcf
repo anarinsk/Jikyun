@@ -1,9 +1,8 @@
 name: freq_change
 account: anarinsk
 server: shinyapps.io
-appId: 113896
-bundleId: 502604
+bundleId: 502715
 url: https://anarinsk.shinyapps.io/freq_change/
-when: 1468322220.82967
+when: 1468332550.65159
 asMultiple: FALSE
 asStatic: FALSE

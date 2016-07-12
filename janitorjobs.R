@@ -1,6 +1,6 @@
 #### Packages innstalled
-#pck_list <- c("readxl", "dplyr", "tidyr", "ggplot2")
-#install.packages(pck_list)
+pck_list <- c("extrafont", "readxl", "dplyr", "tidyr", "ggplot2")
+install.packages(pck_list)
 #rm(pck_list)
 #### End of "Packages innstalled"
 
@@ -11,7 +11,7 @@ library(tidyr)
 #### Making sdf 
 
 #for MAC OS 
-# setwd("~/Documents/github/jikyun/data") 
+setwd("~/Documents/github/jikyun") 
 #for Windows 
 # setwd("~/GitHub/Jikyun")
 
@@ -46,18 +46,19 @@ library(ggplot2)
 
 #install.packages("extrafont")
 library(extrafont)
-#font_import()
+font_import()
 #loadfonts()
 fonts()
 
-#### Bar plot with share 
+#### Bar plot with share
+my_ggfont <- "AppleMyungjo"
 tgdf <- gdf_1 
 ggplot(tgdf) +
   geom_bar(aes(x=year, y=sum, fill=HS_type), stat ="identity", position ="fill") + 
   ggtitle("서울대 신입생 고교 종류별 비율") + 
   xlab("연도") + ylab("비율") +
   theme(
-    text = element_text(family="NanumBarunGothic"))
+    text = element_text(family = my_ggfont))
 
 my_hist <- function(df, my_year)
   {
@@ -68,16 +69,35 @@ my_hist <- function(df, my_year)
     ggtitle("Distribution of SNU Freshmen (from 1999 to 2008)") + 
     geom_histogram(aes(new_entry), binwidth = 0.5, fill="green") + 
     xlim(c(0,20)) + ylim(c(0,300)) + 
-    xlab("# of SNU fresh in high school") + ylab("count") + 
-    theme(text=element_text(family="NanumBarunGothic"))
+    xlab("# of SNU freshmen in a high school") + ylab("count") 
   
   return(res)
   }
 
+my_hist_f <- function(df, my_year)
+{
+  tyear <- paste("Y", my_year, sep="")
+  fdf <- df %>% filter(new_entry>0 & new_entry<=20) %>% filter(year %in% tyear) %>% arrange(new_entry); 
+  res <- ggplot(fdf) + 
+    theme_bw() + 
+    ggtitle("고교별 서울대 신입생 진입자 수 분포 (1999~2008)") + 
+    geom_histogram(aes(new_entry), binwidth = 0.5, fill="green") + 
+    xlim(c(0,20)) + ylim(c(0,300)) + 
+    xlab("고교 서울대 신입생 진입자 수") + ylab("고교 수") + 
+    theme(text=element_text(family=my_ggfont))
+  
+  return(res)
+}
 
-my_hist(tdf, 1999)
+my_hist_f(tdf, 1999)
 my_hist(tdf, 2008)
 
 ### Finalize for Shiny 
+
+rm(colnames, gdf_1, long_sdf,sdf, tgdf, k, pck_list, gdf_2)
+
+
+
+
 
 

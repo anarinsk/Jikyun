@@ -16,6 +16,7 @@ load("src.RData")
 #
 
 library(shiny)
+my_ggfont <- "AppleMyungjo"
 
 # Define UI for application that draws a histogram
 ui <- shinyUI(fluidPage(
@@ -34,7 +35,7 @@ ui <- shinyUI(fluidPage(
                      value = 1999, 
                      sep ="",
                      tick = FALSE,
-                     animate=animationOptions(interval=250, loop=F))
+                     animate=animationOptions(interval=600, loop=F))
       ),
       
       # Show a plot of the generated distribution
