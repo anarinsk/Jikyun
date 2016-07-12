@@ -16,7 +16,6 @@ load("src.RData")
 #
 
 library(shiny)
-my_ggfont <- "AppleMyungjo"
 
 # Define UI for application that draws a histogram
 ui <- shinyUI(fluidPage(
@@ -50,7 +49,7 @@ server <- shinyServer(function(input, output) {
    
    output$distPlot <- renderPlot({
       # generate bins based on input$bins from ui.R
-      my_hist(tdf, input$year)
+      my_hist_f(tdf, input$year, "AppleMyungjo")
    })
 })
 

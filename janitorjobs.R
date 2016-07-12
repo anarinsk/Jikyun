@@ -74,7 +74,7 @@ my_hist <- function(df, my_year)
   return(res)
   }
 
-my_hist_f <- function(df, my_year)
+my_hist_f <- function(df, my_year, my_ggfont)
 {
   tyear <- paste("Y", my_year, sep="")
   fdf <- df %>% filter(new_entry>0 & new_entry<=20) %>% filter(year %in% tyear) %>% arrange(new_entry); 
@@ -89,7 +89,7 @@ my_hist_f <- function(df, my_year)
   return(res)
 }
 
-my_hist_f(tdf, 1999)
+my_hist_f(tdf, 2005, "AppleMyungjo")
 my_hist(tdf, 2008)
 
 ### Finalize for Shiny 
